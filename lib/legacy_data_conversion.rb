@@ -1,12 +1,16 @@
-def allergy_score(number)
-  allergy_list = { 128 => "cats", 64 => "pollen", 32 => "chocolate", 16 =>"tomatoes", 8=>"strawberries", 4 => "shellfish", 2 => "peanuts", 1 => "eggs"}
-  results = [] 
+data_hash = { 1 => ['A','E','I','O','U','L','N','R','S','T'], 2 => ['D','G'], 3 => ['B','C','M','P'], 4 =>['F','H','V','W','Y'], 5=>['K'], 8 => ['J','X'], 10 => ['Q','Z']}
 
-  allergy_list.each do |key,value|
-    while number >= key 
-      results << allergy_list[key]
-      number = number - key      
+def legacy_data_conversion(data)
+  new_hash = {}
+
+  data.each do |key,value|
+    value.each do |i|
+      i.downcase!
+      new_hash.store(i,key)
     end
   end
-  results.reverse
+  new_hash.sort
+  
 end
+
+legacy_data_conversion({ 1 => ['A','E','I','O','U','L','N','R','S','T'], 2 => ['D','G'], 3 => ['B','C','M','P'], 4 =>['F','H','V','W','Y'], 5=>['K'], 8 => ['J','X'], 10 => ['Q','Z']})
